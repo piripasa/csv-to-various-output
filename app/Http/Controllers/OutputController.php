@@ -9,6 +9,11 @@ use Illuminate\Support\Facades\Log;
 
 class OutputController extends Controller
 {
+    /**
+     * @param GenerateFileRequest $request
+     * @param OutputService $outputService
+     * @return mixed
+     */
     public function generate(GenerateFileRequest $request, OutputService $outputService)
     {
         try {

@@ -16,6 +16,11 @@ class OutputRepository
     private $data;
     private $options;
 
+    /**
+     * Set output file name
+     * @param $fileName
+     * @return $this
+     */
     public function setFileName($fileName)
     {
         if (!is_string($fileName) || empty($fileName)) {
@@ -31,12 +36,22 @@ class OutputRepository
         return $this;
     }
 
+    /**
+     * Set output file version
+     * @param $fileVersioning
+     * @return $this
+     */
     public function setFileVersioning($fileVersioning)
     {
         $this->fileVersioning = $fileVersioning;
         return $this;
     }
 
+    /**
+     * Set processed data based on filter/sorting/group
+     * @param $data
+     * @return $this
+     */
     public function setData($data)
     {
         if (!is_array($data) || empty($data)) {
@@ -63,12 +78,21 @@ class OutputRepository
         return $this;
     }
 
+    /**
+     * Set output file Options
+     * @param $options
+     * @return $this
+     */
     public function setOptions($options)
     {
         $this->options = $options;
         return $this;
     }
 
+    /**
+     * Save data to file
+     * @param OutputInterface $file
+     */
     public function save(OutputInterface $file)
     {
         $file->saveData($this->fileName, $this->data);

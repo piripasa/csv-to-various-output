@@ -16,6 +16,11 @@ use App\Rules\NonAscii;
 
 class OutputService
 {
+    /**
+     * Prepare data for validation
+     * @param $dnsValidation
+     * @return $this
+     */
     public function prepareData($dnsValidation)
     {
         $rules = [
@@ -33,6 +38,13 @@ class OutputService
 
     }
 
+    /**
+     * Process data
+     * @param $csvValidator
+     * @param $outputType
+     * @param $fileVersioning
+     * @param $options
+     */
     public function processData($csvValidator, $outputType, $fileVersioning, $options)
     {
         $outputRepository = new OutputRepository();

@@ -13,6 +13,11 @@ use Illuminate\Support\Facades\Storage;
 
 abstract class Output
 {
+    /**
+     * Write data to file
+     * @param $fileName
+     * @param $data
+     */
     public function writeToFile($fileName, $data)
     {
         Storage::disk('trivago')->put($fileName, $data);
