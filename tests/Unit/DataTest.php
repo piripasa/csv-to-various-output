@@ -17,18 +17,27 @@ class DataTest extends TestCase
         parent::setUp();
     }
 
+    /**
+     * Check if csv file exist or not
+     */
     public function testCSVFileExist()
     {
         // Assert the file was stored...
         Storage::disk('trivago')->assertExists('hotels.csv');
     }
 
+    /**
+     * Check if Redis server running or not
+     */
     public function testRedisConnection()
     {
         $redis = new \Redis();
         $this->assertTrue($redis->connect(env('REDIS_HOST')));
     }
 
+    /**
+     * Check for valid csv data
+     */
     public function testValidCSVFile()
     {
         $outputService = new OutputService();
@@ -37,6 +46,9 @@ class DataTest extends TestCase
         $this->assertTrue($csvValidator->fails(), 'CSV file contains invalid data');
     }
 
+    /**
+     * File generation fail test
+     */
     public function testGenerateFileValidation()
     {
         Storage::fake('trivago');
@@ -49,6 +61,9 @@ class DataTest extends TestCase
         $this->assertEquals(422, $response->getStatusCode());
     }
 
+    /**
+     * File generation test
+     */
     public function testGenerateDataFile()
     {
         Storage::fake('trivago');
@@ -61,31 +76,50 @@ class DataTest extends TestCase
         $this->assertEquals(201, $response->getStatusCode());
     }
 
+    /**
+     * generate json file
+     */
     public function testCreateJsonOutput()
     {
         $this->manageFile('json');
     }
 
+    /**
+     * generate xml file
+     */
     public function testCreateXmlOutput()
     {
         $this->manageFile('xml');
     }
 
+    /**
+     * generate yaml file
+     */
     public function testCreateYamlOutput()
     {
         $this->manageFile('yaml');
     }
 
+    /**
+     * generate html file
+     */
     public function testCreateHtmlOutput()
     {
         $this->manageFile('html');
     }
 
+    /**
+     * generate sqlite file
+     */
     public function testCreateSqliteOutput()
     {
         $this->manageFile('sqlite');
     }
 
+    /**
+     * Prepare data test
+     * @return array
+     */
     private function prepareData()
     {
         $data = [];
@@ -105,6 +139,10 @@ class DataTest extends TestCase
         return array_values($data);
     }
 
+    /**
+     * File type test
+     * @param $type
+     */
     private function manageFile($type)
     {
         Storage::fake('trivago');
