@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+    nginx:
+        image: nginx:1.13.5
+        ports:
+            - 8000:80
+        volumes:
+            - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
+        volumes_from:
+            - php
+
+    php:
+        build: ./docker/php/
+        expose:
+            - 9000
+        volumes:
+            - .:/var/www/html
+        links:
+            - redis
+
+    redis:
+        image: redis:3.2.10
+        volumes:
+          - ~/.backup/redis/trivago:/data
