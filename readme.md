@@ -37,7 +37,7 @@ To do:
 - Run `php artisan queue:work redis`
 - Check 'trivago_files' folder
 
-####Without Docker
+#### Without Docker
 Make Sure you have installed inyour PC:
 
 - PHP >= 7.0.0
@@ -64,7 +64,7 @@ To do:
 - Check 'trivago_files' folder
 
 
-####**** Don't forget to run following artisan command to process the queue after making file generate request
+#### **** Don't forget to run following artisan command to process the queue after making file generate request
 `php artisan queue:work redis`
 
 
